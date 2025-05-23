@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego JS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: linear-gradient(120deg, #e0e7fa 0%, #f7fafd 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+    }
+    .game-container {
+      background: #fff;
+      padding: 32px 28px 28px 28px;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px 0 rgba(38,71,166,0.10);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 320px;
+    }
+    h1 {
+      color: #2753a7;
+      margin-bottom: 12px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 10px #b0c6f177;
+    }
+    p {
+      color: #2a3557;
+      margin: 10px 0;
+      font-size: 1.08rem;
+    }
+    input[type="number"] {
+      width: 80px;
+      padding: 8px;
+      font-size: 1.1rem;
+      border: 2px solid #b4cbfa;
+      border-radius: 8px;
+      outline: none;
+      transition: border 0.2s;
+      margin-right: 12px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 4px #e2e8f0;
+    }
+    input[type="number"]:focus {
+      border: 2px solid #2753a7;
+    }
+    button {
+      background: linear-gradient(90deg, #4f8cff 0%, #2b59b9 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 22px;
+      font-size: 1.08rem;
+      cursor: pointer;
+      margin-bottom: 12px;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 2px 8px #b0c6f133;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #2b59b9 0%, #4f8cff 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+    #result {
+      font-weight: bold;
+      font-size: 1.15rem;
+      margin-top: 8px;
+      min-height: 24px;
+      color: #22724d;
+      transition: color 0.3s;
+    }
+    #result.incorrecto {
+      color: #b02a2a;
+    }
+    @media (max-width: 500px) {
+      .game-container {
+        min-width: 95vw;
+        padding: 16px 4vw 18px 4vw;
+      }
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>Juego: Adivina el número</h1>
+    <p>Escribe un número del 1 al 10:</p>
+    <input type="number" id="guess" min="1" max="10" autocomplete="off">
+    <button onclick="checkGuess()">Comprobar</button>
+    <p id="result"></p>
+  </div>
+  <script>
+    const number = Math.floor(Math.random() * 10) + 1;
+    function checkGuess() {
+      const guess = parseInt(document.getElementById('guess').value);
+      const result = document.getElementById('result');
+      if (guess === number) {
+        result.textContent = '¡Correcto!';
+        result.className = '';
+      } else {
+        result.textContent = 'Incorrecto. Intenta de nuevo.';
+        result.className = 'incorrecto';
+      }
+    }
+  </script>
+</body>
+</html>
